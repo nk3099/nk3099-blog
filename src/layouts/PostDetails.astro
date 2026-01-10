@@ -114,6 +114,32 @@ const nextPost =
       <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" class="my-2" />
 
 
+
+    {/* A11y helper — add actual label */}
+    <span class="sr-only">Estimated reading time:</span>
+
+    {/* Reading time chip: mobile-safe, no overflow */}
+    <span class="inline-flex items-center gap-2 text-sm italic sm:text-base min-w-0">
+      {/* Hide the divider on mobile to save space */}
+      <span aria-hidden="true" class="hidden sm:inline opacity-60">|</span>
+
+      {/* Icon should not shrink */}
+      <span
+        aria-hidden="true"
+        class="inline-block size-5 min-w-[1.25rem] leading-none text-current align-middle shrink-0"
+        title="Estimated reading time"
+      >
+        ⌛
+      </span>
+
+      {/* Label truncates on mobile, full on sm+ */}
+      <span class="truncate max-w-[55vw] sm:max-w-none">
+        {readTimingLabel}
+      </span>
+    </span>
+
+<!----
+
 {/* A11y helper */}
 <span class="sr-only"></span>
 
@@ -130,6 +156,7 @@ const nextPost =
   {readTimingLabel}
 </span>
 
+--->
 
       <EditPost class="max-sm:hidden" {hideEditPost} {post} />
     </div>
