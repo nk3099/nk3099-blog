@@ -18,35 +18,62 @@ const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+
 ---
 
 <Layout>
   <Header />
   <main id="main-content" data-layout="index">
     <section id="hero" class="pt-8 pb-6">
+
+     <!-- Image aligned to the right -->
+      <img
+        src=public/neeraj.jpeg
+        
+        
+        alt="Neeraj Kumar"
+        class="float-right ml-6 mb-4 w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-full object-cover shadow-lg ring-1 ring-gray-200"
+        loading="eager"
+        decoding="async"
+      />
+
+
       <h1 class="my-4 inline-block text-3xl font-bold sm:my-8 sm:text-4xl">
-        Hey 👋, I’m Neeraj.
-      </h1>
+       Hey, 👋  I’m Neeraj.
+   </h1>
+      <!--
+      
       <a
-        target="_blank"
+        target="_blank" 
         href="/rss.xml"
         class="inline-block"
         aria-label="rss feed"
-        title="RSS Feed"
-      >
-        <IconRss
+        title="RSS Feed">
+     <IconRss
           width={20}
           height={20}
           class="scale-125 stroke-accent stroke-3"
         />
-        <span class="sr-only">RSS Feed</span>
+        <!-- <span class="sr-only">RSS Feed</span> -->
       </a>
+      
 
-      <p>
-        I'm a Software Engineer with 7+ years of experience, passionate about building purposeful products with deep technical rigor. With a background in Computer Science Engineering, my curiosity for how systems work has shaped my journey.
+      <p> My journey in technology began with curiosity and has grown into a passion for creating exceptional customer experiences. 
+      
+      Today, I work at Sprinklr         <div class="mt-6">Today, I work at <LinkButton
+          class="underline decoration-dashed underline-offset-4 hover:text-accent"
+          href="https://Sprinklr.com"> Sprinklr </LinkButton>,
+      as a Platinum Account Manager, where I lead customer interactions and engagement for enterprise clients. 
 
-        <div class="mt-6">Currently serving as a <b>Senior Lead Software Engineer at <a href="https://chargebee.com" target="_blank">Chargebee</a></b>, where I lead Applied AI initiatives — building intelligent Copilots, scalable AI workflows, and a robust AI platform.</div>
-      </p>
+      Previously, have led the CloudEngineering team from Incident Management at Sprinklr.
+  Outside of work, you’ll likely find me :></div>
+
+        <div class="mt-6"> Here’s a bit about my background:  
+       
+, .</div>
+
+
+      <!--</p>
       <p class="mt-2">
         Read the blog posts or check 
         <LinkButton
@@ -55,18 +82,25 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         >
         my bio
         </LinkButton> for more info.
-      </p>
+      </p> -->
+
+      <br>
+      <br>
+      <br>
+      <br>
+      
       {
         // only display if at least one social link is enabled
         SOCIALS.length > 0 && (
-          <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
-            <div class="mr-2 mb-1 whitespace-nowrap sm:mb-0">Social Links:</div>
+          <div class="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-center text-center">
+            <div class="mr-2 mb-1 whitespace-nowrap sm:mb-0"></div>
             <Socials />
           </div>
         )
       }
     </section>
 
+<!--
     <Hr />
 
     {
@@ -99,6 +133,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
       )
     }
 
+
     <div class="my-8 text-center">
       <LinkButton href="/posts/">
         All Posts
@@ -109,6 +144,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
   <Footer />
 </Layout>
 
+>
 <script>
   document.addEventListener("astro:page-load", () => {
     const indexLayout = (document.querySelector("#main-content") as HTMLElement)
@@ -118,3 +154,5 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     }
   });
 </script>
+
+

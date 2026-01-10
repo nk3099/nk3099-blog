@@ -2,7 +2,9 @@
 layout: ../layouts/AboutLayout.astro
 title: "👋 About Me"
 ---
- 
+
+
+<!--  
 Ever since I wrote my first "Hello World," I've been hooked on understanding how software really works. That curiosity led me to a degree in Computer Science Engineering, and over the past 7+ years, it’s evolved into a passion for building purposeful, technically robust products.
 
 Currently serving as a **Senior Lead Software Engineer at [Chargebee](https://chargebee.com)**, I lead Applied AI initiatives — building intelligent Copilots, scalable AI workflows, and a robust AI platform that accelerates innovation across the organization.
@@ -31,4 +33,4 @@ I'm known for:
 
 ### 🌐 Let’s Connect  
 I love exchanging ideas and learning with others in the tech community.  
-Follow me on my socials — always up for a good engineering convo!
+Follow me on my socials — always up for a good engineering convo! -->

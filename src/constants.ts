@@ -11,7 +11,7 @@ import { SITE } from "@/config";
 export const SOCIALS = [
   {
     name: "Github",
-    href: "https://github.com/Neeraj-ganesan",
+    href: "https://github.com/nk3099",
     linkTitle: ` ${SITE.title} on Github`,
     icon: IconGitHub,
   },
@@ -23,13 +23,13 @@ export const SOCIALS = [
   },
   {
     name: "LinkedIn",
-    href: "https://www.linkedin.com/in/Neeraj/",
+    href: "https://www.linkedin.com/in/neerajk21036/",
     linkTitle: `${SITE.title} on LinkedIn`,
     icon: IconLinkedin,
   },
   {
     name: "Mail",
-    href: "mailto:Neeraj.dev@gmail.com",
+    href: "mailto:neerajkumar30may@gmail.com",
     linkTitle: `Send an email to ${SITE.title}`,
     icon: IconMail,
   },
