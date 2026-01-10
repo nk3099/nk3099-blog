@@ -17,7 +17,7 @@ export const SOCIALS = [
   },
   {
     name: "X",
-    href: "https://x.com/Neeraj_g",
+    href: "https://x.com/nk_3099",
     linkTitle: `${SITE.title} on X`,
     icon: IconBrandX,
   },
