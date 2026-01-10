@@ -5,8 +5,7 @@ draft: false
 pubDatetime: 2026-01-10T15:00:00+05:30
 description: fastapi implementation with api authentication
 tags:
-  - fast-api 
-  - Professional Development
+  - fastapi 
 ---
 
 **Decorator line (the route definition)** declares what the endpoint returns (the response) and static metadata like status code. 

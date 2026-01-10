@@ -1,0 +1,109 @@
+---
+title: secondpost
+slug: secondpost
+draft: false
+pubDatetime: 2026-01-09T15:00:00+05:30
+description: fastapi ka second psot try rte
+tags:
+  - fastapi 
+---
+
+## Decorator vs Function Signature
+
+- **Decorator line** defines the route, response model, and metadata like status codes.
+- **Function signature** defines what the endpoint receives—request body, query/path params, and injected dependencies.
+
+---
+
+## What is `Depends`?
+
+`Depends` is part of FastAPI’s dependency injection system. It tells FastAPI:
+> “Run this function before the endpoint and inject its return value into my parameter.”
+
+---
+
+## Networking Basics
+
+A **host** is any device (computer, server, IoT device) with an IP address that can communicate over a network. In a connection, the host is typically the endpoint you connect to or from.
+
+---
+
+## Serialization in FastAPI
+
+- FastAPI automatically serializes return values (dict, Pydantic model) into JSON.
+- **Serialization** converts objects into formats like JSON or XML.  
+  **Deserialization** reverses this process.
+
+**Common Use Cases:**
+- APIs: Send Python objects as JSON over HTTP.
+- Databases: Store structured data as strings/blobs.
+- Caching: Save objects in Redis or files.
+
+---
+
+### Example: JSON Serialization in Python
+```python
+import json
+
+data = {"id": 1, "title": "Hello", "tags": ["python", "fastapi"]}
+
+# Serialize
+json_string = json.dumps(data)
+print(json_string)
+
+# Deserialize
+parsed_data = json.loads(json_string)
+print(parsed_data["title"])
+
+
+
+import psycopg2
+from fastapi import FastAPI, Depends, status
+from pydantic import BaseModel
+
+app = FastAPI()
+
+# Database Dependency
+def get_db():
+    conn = psycopg2.connect(
+        host="localhost",
+        database="fastapi",
+        user="postgres",
+        password="Learning@tools1"
+    )
+    try:
+        yield conn
+    finally:
+        conn.close()
+
+# Schemas
+class PostCreate(BaseModel):
+    title: str
+    body: str
+
+class PostResponse(BaseModel):
+    id: int
+    title: str
+    body: str
+
+# Create Post
+@app.post("/posts", status_code=status.HTTP_201_CREATED, response_model=PostResponse)
+def create_post(payload: PostCreate, db=Depends(get_db)):
+    cursor = db.cursor()
+    cursor.execute(
+        "INSERT INTO posts (title, body) VALUES (%s, %s) RETURNING id",
+        (payload.title, payload.body)
+    )
+    post_id = cursor.fetchone()[0]
+    db.commit()
+    cursor.close()
+    return PostResponse(id=post_id, title=payload.title, body=payload.body)
+
+# Get Posts
+@app.get("/posts", response_model=list[PostResponse])
+def get_posts(db=Depends(get_db)):
+    cursor = db.cursor()
+    cursor.execute("SELECT id, title, body FROM posts")
+    rows = cursor.fetchall()
+    cursor.close()
+    return [PostResponse(id=row[0], title=row[1], body=row[2]) for row in rows]
