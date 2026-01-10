@@ -36,6 +36,19 @@ const {
 
 const { Content } = await render(post);
 
+
+//-----------read /src/utils/readPostTime------------------
+
+import { getReadTime } from "@/utils/readPostTime";
+
+const WORDS_PER_MINUTE = 225;
+const bodyText: string = (post as any).body ?? "";
+
+// Compute reading time (no type appended)
+const { label: readTimingLabel } = getReadTime(bodyText, WORDS_PER_MINUTE, "round");
+
+//--------------------------------------------------------
+
 let ogImageUrl: string | undefined;
 
 // Determine OG image source
@@ -99,6 +112,30 @@ const nextPost =
     </h1>
     <div class="flex items-center gap-4">
       <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" class="my-2" />
+
+
+
+{/* A11y helper */}
+<span class="sr-only">Estimated reading time:</span>
+
+{/* Inline group with no breaks */}
+<span class="inline-flex items-center gap-2 text-sm italic sm:text-base whitespace-nowrap">
+  <span aria-hidden="true" class="opacity-60">|</span>
+  <span
+    aria-hidden="true"
+    class="inline-block size-5 min-w-[1.25rem] leading-none text-current align-middle"
+    title="Estimated reading time"
+  >
+    ⌛
+  </span>
+  {readTimingLabel}
+</span>
+
+
+
+
+
+
       <EditPost class="max-sm:hidden" {hideEditPost} {post} />
     </div>
     <article id="article" class="mx-auto prose mt-8 max-w-4xl">
@@ -163,6 +200,54 @@ const nextPost =
   </main>
   <Footer />
 </Layout>
+
+
+
+
+<!-- Styles: Scrollable code blocks + Copy button STARTS -->
+<style is:global>
+  /* Make code blocks scrollable when content overflows */
+  .prose pre {
+    overflow: auto;                 /* both axes when needed */
+    max-height: 28rem;              /* cap vertical height */
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid hsl(0 0% 90% / 0.6);
+    border-radius: 0.5rem;
+  }
+
+  .prose pre code {
+    white-space: pre;               /* keep original formatting */
+    word-break: normal;
+  }
+
+  /* Optional: only for Python blocks (uncomment if desired) */
+  /* .prose pre:has(code.language-python) { overflow: auto; max-height: 28rem; } */
+
+  /* Copy button styling */
+  .prose pre .copy-btn {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    background: var(--color-accent, #3b82f6);
+    color: white;
+    opacity: 0.85;
+    border: none;
+    cursor: pointer;
+  }
+  .prose pre .copy-btn:hover,
+  .prose pre .copy-btn:focus {
+    opacity: 1;
+    outline: none;
+  }
+</style>
+
+
+<!--------Styles: Scrollable code blocks + Copy button ENDS-->
+
+
 
 <script is:inline data-astro-rerun>
   /** Create a progress indicator

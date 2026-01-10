@@ -2,7 +2,7 @@
 title: FastAPI with Authentication
 slug: fastapi-with-authentication
 draft: false
-pubDatetime: 2026-01-10T15:00:00+05:30
+pubDatetime: 2026-01-11T15:00:00+05:30
 description: fastapi implementation with api authentication
 tags:
   - fast-api 
